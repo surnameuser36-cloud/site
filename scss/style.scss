@@ -1,0 +1,530 @@
+// Основные цвета и размеры проекта
+$accent: #ff5c35;
+$dark: #172121;
+$light: #f5f2eb;
+$white: #ffffff;
+$border: #c9c4ba;
+$radius: 18px;
+
+// Миксин ограничивает ширину основного содержимого
+@mixin container {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+// Миксин используется для адаптивной версии
+@mixin mobile {
+    @media (max-width: 720px) {
+        @content;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: $dark;
+    background: $light;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    transition: color .25s, background .25s;
+}
+
+body.dark-theme {
+    color: #eef4f2;
+    background: #101616;
+
+    .site-header,
+    .event-card,
+    .accordion details,
+    .event-dialog {
+        background: #192222;
+    }
+
+    .event-card,
+    .accordion details {
+        border-color: #3b4947;
+    }
+
+    .main-nav a,
+    .site-footer a {
+        color: #eef4f2;
+    }
+}
+
+.container {
+    @include container;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    max-width: 760px;
+    margin-bottom: 24px;
+    font-size: clamp(2.8rem, 7vw, 6.8rem);
+    line-height: .96;
+    letter-spacing: -.06em;
+}
+
+h2 {
+    margin-bottom: 24px;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+    letter-spacing: -.04em;
+}
+
+h3 {
+    font-size: 1.45rem;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: $accent;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+    border: 2px solid $accent;
+    border-radius: 999px;
+    color: $white;
+    background: $accent;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+
+    &:hover {
+        box-shadow: 0 8px 24px rgba($accent, .28);
+        transform: translateY(-2px);
+    }
+}
+
+// Шапка и навигация
+.site-header {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    border-bottom: 1px solid rgba($dark, .15);
+    background: rgba($light, .92);
+    backdrop-filter: blur(12px);
+}
+
+.header-row {
+    display: flex;
+    min-height: 76px;
+    align-items: center;
+    gap: 28px;
+}
+
+.logo {
+    margin-right: auto;
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-decoration: none;
+
+    span {
+        color: $accent;
+    }
+}
+
+.main-nav {
+    display: flex;
+    gap: 26px;
+
+    a {
+        color: $dark;
+        font-weight: 700;
+        text-decoration: none;
+    }
+}
+
+.theme-button,
+.menu-button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $border;
+    border-radius: 50%;
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-button {
+    display: none;
+
+    span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        margin: 4px auto;
+        background: currentColor;
+    }
+}
+
+// Главный экран
+.hero {
+    display: flex;
+    min-height: calc(100vh - 76px);
+    align-items: center;
+    padding: 80px 0;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    align-items: end;
+    gap: 70px;
+}
+
+.hero-content>p:not(.eyebrow) {
+    max-width: 610px;
+    margin-bottom: 32px;
+    font-size: 1.2rem;
+}
+
+.hero-note {
+    padding: 26px;
+    border-left: 5px solid $accent;
+    background: $dark;
+    color: $white;
+
+    span,
+    time,
+    strong {
+        display: block;
+    }
+
+    span {
+        margin-bottom: 16px;
+        color: #ffb7a5;
+        font-size: .75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    strong {
+        margin-bottom: 22px;
+        font-size: 1.3rem;
+        line-height: 1.25;
+    }
+}
+
+// Каталог событий
+.events {
+    border-top: 1px solid $border;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.filter-button {
+    padding: 9px 16px;
+    border: 1px solid $border;
+    border-radius: 999px;
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+        border-color: $dark;
+        color: $white;
+        background: $dark;
+    }
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.event-card {
+    display: flex;
+    min-height: 340px;
+    padding: 28px;
+    border: 1px solid $border;
+    border-radius: $radius;
+    background: $white;
+    flex-direction: column;
+    transition: opacity .25s, transform .25s;
+
+    &.hidden {
+        display: none;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    footer {
+        display: flex;
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid $border;
+        justify-content: space-between;
+        gap: 15px;
+        font-size: .9rem;
+        font-weight: 700;
+    }
+}
+
+.card-mark {
+    margin-bottom: 44px;
+    color: $accent;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.card-type {
+    margin-bottom: 9px;
+    color: #6c6c67;
+    font-size: .78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+// Информационный блок и FAQ
+.about {
+    color: $white;
+    background: $dark;
+}
+
+.about-grid,
+.faq-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 80px;
+}
+
+.about-text {
+    font-size: 1.25rem;
+}
+
+.accordion details {
+    margin-bottom: 12px;
+    padding: 22px 24px;
+    border: 1px solid $border;
+    border-radius: 12px;
+    background: $white;
+
+    summary {
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    p {
+        margin: 16px 0 0;
+    }
+}
+
+// Подвал и модальное окно
+.site-footer {
+    padding: 30px 0;
+    border-top: 1px solid $border;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.event-dialog {
+    width: min(520px, calc(100% - 30px));
+    padding: 0;
+    border: 0;
+    border-radius: $radius;
+    color: inherit;
+    background: $white;
+
+    &::backdrop {
+        background: rgba($dark, .75);
+        backdrop-filter: blur(4px);
+    }
+}
+
+.event-form {
+    position: relative;
+    display: grid;
+    padding: 36px;
+    gap: 18px;
+
+    h2 {
+        margin-bottom: 4px;
+        font-size: 2.2rem;
+    }
+
+    label {
+        display: grid;
+        gap: 7px;
+        font-weight: 700;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $border;
+        border-radius: 8px;
+        color: $dark;
+        background: $white;
+    }
+}
+
+.close-dialog {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.form-message {
+    min-height: 24px;
+    margin: 0;
+    color: $accent;
+    font-weight: 700;
+}
+
+// Адаптация для планшетов
+@media (max-width: 900px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-note {
+        max-width: 460px;
+    }
+}
+
+// Адаптация для мобильных устройств
+@include mobile {
+    .container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 76px;
+        right: 0;
+        left: 0;
+        display: none;
+        padding: 22px;
+        border-bottom: 1px solid $border;
+        background: inherit;
+        flex-direction: column;
+        align-items: center;
+
+        &.open {
+            display: flex;
+        }
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 70px 0;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .filters {
+        justify-content: flex-start;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        min-height: 300px;
+    }
+
+    .footer-row {
+        flex-direction: column;
+    }
+
+    .event-form {
+        padding: 28px 22px;
+    }
+}

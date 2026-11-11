@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Подборка городских событий и активностей на выходные">
+    <title>Город рядом — события на выходные</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Шапка страницы и основная навигация -->
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="logo" href="#top" aria-label="На главную">Город<span>рядом</span></a>
+
+            <button class="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false"
+                aria-controls="main-menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="main-nav" id="main-menu" aria-label="Основная навигация">
+                <a href="#events">События</a>
+                <a href="#about">О проекте</a>
+                <a href="#faq">Вопросы</a>
+            </nav>
+
+            <button class="theme-button" type="button" aria-label="Переключить цветовую тему"
+                title="Сменить тему">☾</button>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- Вводный блок страницы -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <p class="eyebrow">Планы на выходные</p>
+                    <h1 id="hero-title">Откройте свой город заново</h1>
+                    <p>Выбирайте лекции, прогулки и творческие встречи. Все события собраны в одном месте.</p>
+                    <a class="primary-button" href="#events">Найти событие</a>
+                </div>
+                <aside class="hero-note" aria-label="Событие недели">
+                    <span>Событие недели</span>
+                    <strong>Ночная экскурсия по старому центру</strong>
+                    <time datetime="2026-11-14T20:00">14 ноября, 20:00</time>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Каталог с интерактивной фильтрацией -->
+        <section class="events section" id="events" aria-labelledby="events-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Афиша</p>
+                        <h2 id="events-title">Выберите формат</h2>
+                    </div>
+                    <div class="filters" role="group" aria-label="Фильтр событий">
+                        <button class="filter-button active" type="button" data-filter="all">Все</button>
+                        <button class="filter-button" type="button" data-filter="walk">Прогулки</button>
+                        <button class="filter-button" type="button" data-filter="lecture">Лекции</button>
+                        <button class="filter-button" type="button" data-filter="creative">Творчество</button>
+                    </div>
+                </div>
+
+                <div class="event-grid" aria-live="polite">
+                    <article class="event-card" data-category="walk">
+                        <div class="card-mark">01</div>
+                        <p class="card-type">Прогулка</p>
+                        <h3>Архитектура модерна</h3>
+                        <p>Маршрут по необычным фасадам и дворам с городским исследователем.</p>
+                        <footer><time datetime="2026-11-14T12:00">14 ноября, 12:00</time><span>Бесплатно</span></footer>
+                    </article>
+
+                    <article class="event-card" data-category="lecture">
+                        <div class="card-mark">02</div>
+                        <p class="card-type">Лекция</p>
+                        <h3>Как читать современное искусство</h3>
+                        <p>Разбираемся, как смотреть выставки без сложных терминов и готовых ответов.</p>
+                        <footer><time datetime="2026-11-15T16:00">15 ноября, 16:00</time><span>600 ₽</span></footer>
+                    </article>
+
+                    <article class="event-card" data-category="creative">
+                        <div class="card-mark">03</div>
+                        <p class="card-type">Мастер-класс</p>
+                        <h3>Городской скетчинг</h3>
+                        <p>Учимся быстро передавать настроение улицы с помощью маркеров и линеров.</p>
+                        <footer><time datetime="2026-11-15T13:00">15 ноября, 13:00</time><span>900 ₽</span></footer>
+                    </article>
+
+                    <article class="event-card" data-category="walk">
+                        <div class="card-mark">04</div>
+                        <p class="card-type">Прогулка</p>
+                        <h3>Истории городских парков</h3>
+                        <p>Спокойная прогулка о том, как менялись зелёные пространства города.</p>
+                        <footer><time datetime="2026-11-16T11:00">16 ноября, 11:00</time><span>400 ₽</span></footer>
+                    </article>
+
+                    <article class="event-card" data-category="lecture">
+                        <div class="card-mark">05</div>
+                        <p class="card-type">Лекция</p>
+                        <h3>Музыка большого города</h3>
+                        <p>Разговор о звуках улиц и жанрах, которые появились в городской среде.</p>
+                        <footer><time datetime="2026-11-16T18:00">16 ноября, 18:00</time><span>500 ₽</span></footer>
+                    </article>
+
+                    <article class="event-card" data-category="creative">
+                        <div class="card-mark">06</div>
+                        <p class="card-type">Практикум</p>
+                        <h3>Коллаж из старых афиш</h3>
+                        <p>Создаём авторский постер и знакомимся с основами композиции.</p>
+                        <footer><time datetime="2026-11-17T17:00">17 ноября, 17:00</time><span>750 ₽</span></footer>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Информационный раздел -->
+        <section class="about section" id="about" aria-labelledby="about-title">
+            <div class="container about-grid">
+                <div>
+                    <p class="eyebrow">О проекте</p>
+                    <h2 id="about-title">Меньше поиска — больше впечатлений</h2>
+                </div>
+                <div class="about-text">
+                    <p>«Город рядом» помогает быстро выбрать занятие по интересам. Подборка обновляется каждую неделю.
+                    </p>
+                    <button class="primary-button open-dialog" type="button">Предложить событие</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ реализован нативными интерактивными элементами details -->
+        <section class="faq section" id="faq" aria-labelledby="faq-title">
+            <div class="container faq-grid">
+                <div>
+                    <p class="eyebrow">FAQ</p>
+                    <h2 id="faq-title">Частые вопросы</h2>
+                </div>
+                <div class="accordion">
+                    <details>
+                        <summary>Нужно ли регистрироваться на события?</summary>
+                        <p>Если у события ограничено число мест, регистрация обязательна. Информация указывается в
+                            карточке.</p>
+                    </details>
+                    <details>
+                        <summary>Как предложить своё мероприятие?</summary>
+                        <p>Нажмите кнопку «Предложить событие», заполните форму, и мы свяжемся с вами.</p>
+                    </details>
+                    <details>
+                        <summary>Можно ли отменить участие?</summary>
+                        <p>Да. Для платных мероприятий условия возврата определяет организатор.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <p>© 2026 «Город рядом»</p>
+            <a href="mailto:hello@example.ru">hello@example.ru</a>
+        </div>
+    </footer>
+
+    <!-- Модальное окно отправки события -->
+    <dialog class="event-dialog">
+        <form class="event-form" method="dialog">
+            <button class="close-dialog" type="button" aria-label="Закрыть окно">×</button>
+            <p class="eyebrow">Новая идея</p>
+            <h2>Предложить событие</h2>
+            <label>Название события<input name="title" type="text" required minlength="3"></label>
+            <label>Электронная почта<input name="email" type="email" required></label>
+            <label>Краткое описание<textarea name="description" rows="4" required minlength="10"></textarea></label>
+            <button class="primary-button" type="submit">Отправить</button>
+            <p class="form-message" role="status"></p>
+        </form>
+    </dialog>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
